@@ -1,0 +1,25 @@
+name: Gunluk Skor Botu
+
+on:
+  schedule:
+    # Her gün Türkiye saatiyle gece yarısı 00:00'da çalışır (21:00 UTC)
+    - cron: '0 21 * * *'
+  workflow_dispatch: # Elle test etmeyi sağlayan buton
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodlari Cek
+        uses: actions/checkout@v4
+
+      - name: Python Kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Kutuphaneleri Yukle
+        run: pip install requests
+
+      - name: Botu Calistir
+        run: python bot.py
