@@ -1,0 +1,21 @@
+import requests
+
+def skor_gonder():
+    url = "https://game-hub.kazankazanapi.com/ticket/score/daily"
+    
+    # Loglarınızdan alınan JWT Token
+    token = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5MDUwNTE0MTgxNzAiLCJ1c2VySWQiOjY2Njk4NiwiZ2FtZUlkIjo2LCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwiZXhwIjoxNzgxODA1NzI2fQ.RquTltmdqOxyxi0CWgrq-sKgnTLGKZkeuGUb0GX0g9kCMu0tQ8h9iPdRLdU63CFkpabhfLEbRTxUwmUZqasZ0Q"
+
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    }
+
+    # API'ye gönderilen istek
+    response = requests.post(url, json={"score": 100}, headers=headers)
+    print("Durum Kodu:", response.status_code)
+    print("Yanıt:", response.text)
+
+if __name__ == "__main__":
+    skor_gonder()
